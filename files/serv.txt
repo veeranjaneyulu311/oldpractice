@@ -1,0 +1,29 @@
+service login start
+    service catalog start
+    service  erx start
+     service inventory start
+    service  pharmacy start
+   service   reports start
+    service  appointment start
+     service chat start
+    service  imaging start
+   service  ipd start
+    service  nursing-care start
+   service   website-service start
+     service communication start
+    service  emr start
+    service  lab start
+     service opd start
+     service setting start
+    service  billing start
+    service insurance start
+   service  quality start
+    service doctor start
+    service gateway start
+    service patientportal start
+    echo "ok"
+ sudo service eureka  start
+        sudo service configserver start
+        sudo service zuul start
+        sudo service spring-boot-admin start
+    echo "o

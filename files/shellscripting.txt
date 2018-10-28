@@ -1,0 +1,30 @@
+removing non empty directory------------------->rm -rf /folder/name/*
+script execution------------------------------->./my-script.sh
+changing permission of file-------------------->chmod a+rx my-script.sh  or   chmod 755 
+
+
+
+
+
+
+
+my-script.sh
+find / -iname newfile
+
+
+
+
+
+
+
+echo $PATH------------------------------------->env variable
+export PATH=$PATH:directory-------------------->add directories to your path
+
+The available commands are either built into the shell itself, or reside on the physical file system.to know the location use 'which'
+which ls--------------------------------------->The location on the file system of a                                                        command 
+
+df -i =======>inode table
+ls -li=======>inode number[note: The Inode doesn't contain file content, instead it has a 	      pointer to that data.]
+ln filename hardlinkname[hard]
+ln -s filename hardlinkname[softlink]
+

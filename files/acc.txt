@@ -1,0 +1,251 @@
+login
+------
+veeranjaneyulu311@dru.care
+https://mail.dru.care
+
+
+
+aws:
+----
+Dru@Dev@Pr
+13.233.89.136
+http://13.233.89.136:8080/
+
+13.233.33.244
+22
+
+
+dev:
+----
+ip: 49.207.6.227 
+port: 2233
+
+dru@dru.care
+drucare99
+
+
+practice:
+---------
+ec2 creation 
+what is subnet(aws)
+vpc in aws
+security groups
+drucaredev
+
+
+gconsole --java cmd to monitor the heap and non heap areas
+
+
+jvm vm commands:
+---------------
+-Xms512m         -Xmx1024m     -XX:MetaspaceSize=128m     -XX:MaxMetaspaceSize=256m
+
+dev_db(server name)
+Dru@Dev@123$
+
+
+
+
+/usr/lib/jenkins/jenkins.war
+
+/var/lib/jenkins/workspace/second_job(home)
+
+/var/lib/jenkins/workspace/second_job/new/secondproject/target/secondproject-0.0.1-SNAPSHOT.jar
+
+-f inventory/pom.xml clean install
+/var/lib/jenkins/jobs/[local repository]
+
+
+
+
+
+
+
+
+
+
+
+
+
+scp -P 2233 /var/lib/jenkins/workspace/second_job/new/secondproject/target/secondproject-0.0.1-SNAPSHOT.jar drucaredev@49.207.6.227:/home/drucaredev/secondproject.jar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+codecommit
+qaold<-qa
+masterold -master
+master - dev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+free -h
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+stream:
+intermediate operations-->stateless( filter and map) and stateful(distinct and sorted)
+terminal operations
+
+source--->zero/more int.op(filter,map)---->ter.op(foreach,reduce,sum)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jenkins to automatically build when commits are found, GitHub hooks require a machine that is not localhost. 
+
+1.java -jar jenkins.war -httpPort=8080
+
+2.Manage Jenkins---->Manage Plugins----->search for the Post-Build Script plugin(This plugin will allow us to execute scripts on the Jenkin host after the build has completed without errors.  We need this so we can deploy our Java JAR after it has been packaged.)
+
+
+ In a production scenario, you’ll probably use the SSH plugin for Jenkins and push the JAR to some server and restart the controlling daemon.
+
+create a workflow in Jenkins that pulls from Git, builds, and deploys the packaged application to another server via SSH.However, this process could become even more efficient using Docker and containers.
+
+We’re going to see how to use Jenkins to build a Docker image and deploy the image as a container, replacing any previously existing containers in the process.
+
+So why is Docker a good option when it comes to continuous deployment with Jenkins? Not only is it very convenient to be able to version and store images, but being able to deploy these images with orchestration tools like Kubernetes and Docker Swarm is the icing on the cake.
+
+Jenkins and Docker will exist on the same machine-----interact
+In a production scenario you might have Jenkins on a separate machine and the Docker host on a properly configured different machine.
+
+the job will download the code from Git, build the project, build a Docker image from the project, and deploy the image.
+
+
+1.choose to create a new job.
+2.Freestyle Project --->ok
+3. Source Code Management section.
+Here we’ll define the Git repository that we want to use. Like I said, I’m using a random project that I had once created. The catch here is that my project has a Dockerfile file in it to define how the Docker image is created.
+
+4.Build section ---execute shell
+cd gittalent-frontend
+npm install(Angular requires the Node Package Manager (NPM), so if you’re doing the same or similar, you’ll need Node.js available on the same host as Jenkins.)
+ng build
+docker build -t frontend .(Now remember, the gittalent-frontend directory has a Dockerfile file in it. While not important for this example, it takes the built Angular project and copies it into the image when we build it.)
+
+After the build process completes we want to execute a shell script as a post-build action.
+docker rm -f angular || true
+docker run -d -p 8000:80 --name angular frontend
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

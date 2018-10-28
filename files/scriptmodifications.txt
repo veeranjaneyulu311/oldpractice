@@ -1,0 +1,21 @@
+/opt/app/elastic-apm-agent-0.6.2.jar
+
+
+15/10/2018
+==========
+/etc/init.d
+export APM_AGENT_JAR=/opt/app/elastic-apm-agent-0.8.0.jar[added in env file]
+
+
+/etc/init.d
+javaagent:$APM_AGENT_JAR[added in below scripts]
+
+quality
+appointment-new
+opd(not done)/sir
+reports
+doctor module(not running)
+billing
+catalog
+login(not done)
+

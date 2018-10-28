@@ -1,0 +1,139 @@
+cut -d(delimiter) -f(columnNumber) <fileName>
+
+grep <searchWord> <file name> (OR)   command | grep <searchWord>  
+grep -v <searchWord> <fileName>  [not matching]
+grep -i <searchWord> <fileName>  [case-insensitive]
+grep -A<lineNumber> <searchWord> <fileName> [ line after the result ]
+grep -B<lineNumber> <searchWord> <fileName> [ line before the result]
+grep -C<lineNumber> <searchWord> <fileName> [ line after and line before the result]
+
+comm <file1> <file2>  [The 'comm' command compares two files or streams.]
+comm -23 (To display first column)
+comm -13 (To display second column)
+comm -12 (To display third column)
+
+
+command | sed 's/<oldWord>/<newWord>/'  [changes first occurence]
+command | sed 's/<oldWord>/<newWord>/g' [changes all occurences]
+cat <fileName> | sed '/<Word>/d'        [removes a complete matched line from a file]
+note:It remains only in display, but in actual, file content remains same.
+
+
+
+The 'tee' command is similar to 'cat' command with only one difference. It puts stdin on stdout and also put them into a file.
+cat or tac <fileName> | tee <newFile> |  cat or tac |.....
+
+
+
+tr -s : The 'tr -s' command squeezes the occurence of multiple characters into one.
+command | tr -s <'letter'>   
+tr -d: The 'tr -d' command is used to delete characters.
+Syntax:command | tr -d <letter>  
+
+
+
+
+command <fileName> | uniq  
+command <fileName> | uniq -c  
+
+
+
+wc <fileName>         (Counts words, lines and characters)  
+wc -l <fileName>      (Counts only lines)  
+wc -w <fileName>      (Counts only words)  
+wc -c <fileName>      (Counts only characters)  
+
+
+
+
+od -b <fileName>      (display files in octal format)  
+od -t x1 <fileName>       (display files in hexadecimal bytes format)  
+od -c <fileName>      (display files in ASCII (backslashed) character format)  
+
+
+
+
+sort <fileName>  
+sort -k<columnNumber> <fileName>   
+sort -n -k<columnNumber> <fileName>   
+
+
+
+
+gzip <file1> <file2> <file3>. . .   
+gunzip <file1> <file2> <file3>. . .   
+cat <file1> <file2>. . | gzip > <newFile.gz>   
+gzip -l <file1> <file2>. .   
+tar cf - <directory> | gzip > <directoryName>  [The gzip command will not be able to compress a directory because it can only compress a single file. To compress a directory you have to use 'tar' command.]
+
+
+
+
+head <file name> 
+head <file name> <file name>  
+head -n <file name>
+head -c <number> <file name> [no of bytes]
+
+
+tail <file name>  
+tail -n<number> <file name>  
+tail -c<number> <file name>  
+
+
+
+cat <fileName> 
+
+cat > [fileName]	                        To create a file.
+
+cat [oldfile] > [newfile]	                To copy content from older to new file.
+
+cat [file1 file2 and so on] > [new file name]	To concatenate contents of multiple files                                                   into one.
+
+cat -n/cat -b(without spaces) [fileName]	                To display line numbers.
+
+cat -e [fileName]	                        To display $ character at the end of each                                                   line.
+
+cat [fileName] <<EOF	                        Used as page end marker.
+
+tac <file name>
+tac <file name> --separator "<string>"  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SSH client-22
+
+
+
+
+

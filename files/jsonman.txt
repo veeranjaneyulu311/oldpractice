@@ -1,0 +1,71 @@
+<dependency>
+	<groupId>org.glassfish</groupId>
+  	<artifactId>javax.json</artifactId>
+  	<version>1.0.2</version>
+</dependency>
+
+json to objaect:
+================
+
+1.JsonReader:
+-------------
+
+JsonReader jsonReader = Json.createReader(fis);
+JsonObject jsonObject = jsonReader.readObject();
+
+{"id":123,"name":"Pankaj Kumar","permanent":true,"address":{"street":"El Camino Real","city":"San Jose","zipcode":95014},"phoneNumbers":[9988664422,1234567890],"role":"Developer"}
+
+jsonObject.getInt("id")
+jsonObject.getString("name")
+jsonObject.getBoolean("permanent")
+jsonObject.getJsonArray("phoneNumbers");
+jsonObject.getJsonObject("address");
+
+2.JsonParser:
+------------
+JsonParser jsonParser = Json.createParser(fis);
+jsonParser.hasNext()
+Event event = jsonParser.next();
+
+events:
+START_OBJECT
+KEY_NAME
+VALUE_NUMBER
+KEY_NAME
+VALUE_STRING
+KEY_NAME
+VALUE_TRUE
+KEY_NAME
+START_OBJECT
+KEY_NAME
+VALUE_STRING
+KEY_NAME
+VALUE_STRING
+KEY_NAME
+VALUE_NUMBER
+END_OBJECT
+KEY_NAME
+START_ARRAY
+VALUE_NUMBER
+VALUE_NUMBER
+END_ARRAY
+KEY_NAME
+VALUE_STRING
+END_OBJECT
+
+jsonParser.getString();
+jsonParser.getLong()
+
+===========================================================================================
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20180130</version>
+</dependency>
+
+
+
+A JSON value can be another JSON object, array, number, string, boolean (true/false) or null.
+
+
+

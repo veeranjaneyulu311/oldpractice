@@ -1,0 +1,63 @@
+Ip:    49.207.6.227   
+port:  2233
+
+1.build jar.
+2.open filezilla
+3.click on sitemanager
+4.enter host:49.207.6.227    port:2233   protocol:SFTP  logontype:normal  user: pwd:
+5.click on connect
+6.change " Remote site: /opt/app "
+7.change " Local  site:select jar location "
+8.now select jar file -->right click --> upload
+9.now jar uploads to remote site:/opt/app
+10.open putty
+11.enter hostname: 49.207.6.227      port:2233        connectiontype:SSH
+12.click on open
+13.enter uname and password
+14.now follow the below cmds
+   -->cd /opt/app
+   -->ls  
+   -->mv firstprojectsnapsot.1.0.0.jar  practice.jar
+   -->java -jar practice.jar
+15.
+   -->sudo -s
+   -->cd /etc/init.d 
+   -->ls
+   -->cp login practice
+   -->ls
+   -->vi practice
+             SERVICE_NAME=practice
+             PATH_TO_JAR=/opt/app/practice.jar
+             PID_PATH_NAME=/tmp/practice-temp
+   -->:wq (save and quit)  
+   -->ps -eaf|grep practice
+   -->service practice start
+   -->ps -eaf|grep practice
+   -->jps
+   -->service practice stop
+
+
+
+
+
+jenkins install:
+----------------
+sudo yum install git
+sudo yum install maven
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

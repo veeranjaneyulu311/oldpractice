@@ -1,0 +1,7 @@
+. ./move.sh 2233 Dru@Dev@123$
+
+sshpass -p 'Dru@Dev@123$' scp -P 2233 ./target/demo-0.0.1-SNAPSHOT.jar drucaredev@49.207.6.227:/home/drucaredev/cello.jar
+
+
+13.127.117.126
+Dru@Dev@Pr

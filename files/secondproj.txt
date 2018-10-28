@@ -1,0 +1,33 @@
+CREATE TABLE college(
+ student_no serial PRIMARY KEY,
+ student_name VARCHAR (30)  NOT NULL,
+ mobile_no VARCHAR (30) UNIQUE NOT NULL,
+ email VARCHAR (50) UNIQUE NOT NULL,
+ branch_code NUMERIC (10) NOT NULL,
+	CONSTRAINT branch_code_fkey FOREIGN KEY (branch_code)
+      REFERENCES department (branch_code)
+);
+----------------------------------------------
+CREATE SEQUENCE public."auto_inc" 
+INCREMENT BY 1 
+NO MINVALUE 
+MAXVALUE 5000 
+START WITH 1000
+----------------------------------------------
+
+CREATE TABLE DEPARTMENT(
+ branch_code NUMERIC(10) PRIMARY KEY default nextval('auto_inc'),
+ branch_name VARCHAR (50) UNIQUE NOT NULL,
+ hod VARCHAR (20) NOT NULL,
+ branch_phno VARCHAR (20) NOT NULL
+);
+---------------------------------------------------
+insert into college(student_name,mobile_no,email,branch_code) values ('anjaneyulu','99967','abc@gmail.com',1000);
+
+insert into department(branch_name,hod,branch_phno) values ('ece','abc','0885');
+--------------------------------------------------
+
+from user:---------->"sname": "email": "mobile": "branch": "hod": "branchPh":
+
+
+{"timestamp":"2018-09-26T09:07:08.961+0000","status":500,"error":"Internal Server Error","message":"The getKey method should only be used when a single key is returned. The current key entry contains multiple keys: [{student_no=5, student_name=mani, mobile_no=777777, email=mani@gamil.com, branch_code=1006}]","path":"/insertdetails"}

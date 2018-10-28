@@ -1,0 +1,13 @@
+8639532307
+
+
+
+block
+network
+subnet
+
+
+first ip for networkid
+unicast---one to one
+packet----data+src addr+da
+broadcast------limited(within)

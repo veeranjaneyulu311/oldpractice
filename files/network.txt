@@ -1,0 +1,32 @@
+#ip=32bit
+#packet=data+sender addr(ip)+Des addr(ip)
+
+#to access any service we need following
+  {network id}+{host id}+{process id i.e port}
+
+#we have different classes
+
+first ip in a network is used for network id
+last ip is for Direct Broadcast address[all hosts in other network i.e {NID.255.255.255}]
+255.255.255.255 used for Limited Brodcast address[all hosts within same network]
+0.0.0.0 used for default route if no network id matched in route table 
+subnet mask={all 1's for NID & subnetId  }{all 0's for hostbits}=to finally get network id
+ i.e 1's indicate [NID+SID]
+     0's indicate HID
+
+from subnet mask we can find no.of ip's in a network
+but to find no.of subnets we must know no.of SID bits.it can be find if we know class i.e A/B/C
+Routing Table:
+==============
+NID                   SM               Interface(path)
+
+
+router takes destination ip from packet and performs bitwiseor with SM to find matching NID
+
+#VLSM:
+======
+* we get subnet by selecting bits from hostpart
+*subnets with same no.of hosts will have same subnet mask
+  ex:
+
+subnet mask =large =less no.of hosts(i.e size)

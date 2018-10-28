@@ -1,0 +1,62 @@
+ nohup java -Xmx1500M  -javaagent:/opt/app/elastic-apm-agent-0.6.2.jar -Delastic.apm.server_url=http://$APM_SERVER_IP:$APM_SERVER_PORT -Delastic.apm.service_name=nursing-care -Delastic.apm.application_packages=com.drucare -jar $PATH_TO_JAR
+
+
+
+
+
+-javaagent:/opt/app/elastic-apm-agent-0.6.2.jar -Delastic.apm.server_url=http://49.207.6.227:8200 -Delastic.apm.service_name=quality-dev -Delastic.apm.application_packages=com.drucare  -jar $PATH_TO_JAR
+
+
+nohup java -Xmx1500M  -javaagent:/opt/app/elastic-apm-agent-0.6.2.jar -Delastic.apm.server_url=http://$APM_SERVER_IP:$APM_SERVER_PORT -Delastic.apm.service_name=catalog-dev -Delastic.apm.application_packages=com.drucare -jar $PATH_TO_JAR
+
+
+
+
+
+
+
+
+
+#!/bin/sh
+SERVICE_NAME=reports
+PATH_TO_JAR=/opt/app/report-module-0.0.1.jar
+PID_PATH_NAME=/tmp/reports-pid
+
+. /etc/init.d/env
+
+case $1 in
+    start)
+        echo "Starting $SERVICE_NAME ..."
+        if [ ! -f $PID_PATH_NAME ]; then
+            nohup java -Xmx1500M  -javaagent:/opt/app/elastic-apm-agent-0.6.2.jar -Delastic.apm.server_url=http://$APM_SERVER_IP:$APM_SERVER_PORT -Delastic.apm.service_name=reports-dev -Delastic.apm.application_packages=com.drucare -jar $PATH_TO_JAR /tmp 2>> /dev/null >> /dev/null &
+                        echo $! > $PID_PATH_NAME
+            echo "$SERVICE_NAME started ..."
+        else
+            echo "$SERVICE_NAME is already running ..."
+        fi
+    ;;
+    stop)
+        if [ -f $PID_PATH_NAME ]; then
+            PID=$(cat $PID_PATH_NAME);
+            echo "$SERVICE_NAME stoping ..."
+            kill $PID;
+            echo "$SERVICE_NAME stopped ..."
+            rm $PID_PATH_NAME
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+    restart)
+        if [ -f $PID_PATH_NAME ]; then
+            PID=$(cat $PID_PATH_NAME);
+            echo "$SERVICE_NAME stopping ...";
+            kill $PID;
+            echo "$SERVICE_NAME stopped ...";
+            rm $PID_PATH_NAME
+            echo "$SERVICE_NAME starting ..."
+            nohup java -jar $PATH_TO_JAR /tmp 2>> /dev/null >> /dev/null &
+                        echo $! > $PID_PATH_NAME
+            echo "$SERVICE_NAME started ..."
+        else
+            echo "$SERVICE_NAME is not running ..."
+

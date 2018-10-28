@@ -1,0 +1,4 @@
+@RestController---converts the request JSON format to java format and response from java                   format to JSON format
+@GetMapping-------maps get mode request url to corresponding methods
+@PostMapping------maps post mode request url to corresponding methods
+@RequestBody------stores request body data into corresponding object

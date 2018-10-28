@@ -1,0 +1,83 @@
+export SERVER_IP=localhost
+export SEND_EMAIL_URL=$SERVER_IP
+export SEND_SMS_URL=$SERVER_IP
+export SEND_TEMPLATE_EMAIL_URL=$SERVER_IP
+export APM_SERVER_IP=192.168.1.109
+export APM_SERVER_PORT=8200
+
+
+[root@dru init.d]# ls
+activemq-data    communication      emr-opdnum          imaging           java_service_bak2  metricbeat      patientportal  scripts                zoho
+appointment      communication-new  env                 imaging-nw        javatest           mis             pharmacy       self                   zuul
+appointment-new  configserver       erx                 insurance         jexec              netconsole      postgres       setting                zuul-test
+arch_services    demofile           eureka              internal-app      jmsservice         network         practice       smsservice
+billing          doctor             filebeat            inventory         lab                nohup.out       promosms       spring-boot-admin
+caa              dutyroster         functions           ipd               login              nursing-care    quality        test
+catalog          email              gateway             java_service      login-oldarch      opd             README         website-service
+chat             emr                hs_err_pid4873.log  java_service_bak  logs               opd-common-reg  reports        xe-linux-distribution
+[root@dru init.d]# cd /opt/app
+[root@dru app]# ls
+apminsight-javaagent              emr-0.0.1.jar1                    node_modules              setting-0.0.1.jar
+Appointment.jar                   erx.jar                           nohup.out                 settings-0.0.1.jar
+appointment-new.jar               Eureka-Server-0.0.1-SNAPSHOT.jar  nursing-care-0.0.1.jar    Spring-Boot-Admin-Server-0.0.1-SNAPSHOT.jar
+billing-0.0.1.jar                 ExecutableImaging.jar             opd-0.0.1.jar             tally-module-0.0.1.jar
+billing-0.0.1.jar-old             gateway-0.0.1.jar                 opd-0.0.1.jar-1           TEMPLATE_PATIENT_PORTAL_SMS.vm
+certs                             imaging-0.0.1.jar                 opd-0.0.1.jar-old         templates
+chat-0.0.1.jar                    insurance-0.0.1.jar               os-security.sh            testui
+communication-0.0.1-SNAPSHOT.jar  internal-app-0.0.1.jar            patient-portal-0.0.1.jar  Turbine-0.0.1-SNAPSHOT.jar
+communicationjarsbackup           inventory-0.0.1.jar               pharmacy-0.0.1.jar        ui
+config-server-0.0.1-SNAPSHOT.jar  ipd-0.0.1.jar                     po.sql                    uibackup
+del3                              ipd-0.0.1.jar1                    practice.jar              USER_LOGIN_OTP.vm
+demofile.jar                      jarbackup                         prod_release              Wacom-SigCaptX-1.16.0.exe
+dockers                           jpsstat.sh                        prune_old_logs.py         WacomTablet_6.3.24-5a.exe
+dutyroster-0.0.1.jar              lab-0.0.1.jar                     quality.jar               website-services-0.0.1.jar
+elastic-apm-agent-0.6.0.jar       login-reg-0.0.1.jar               report-module-0.0.1.jar   zoho-pricing_planning-0.0.1.jar
+elastic-apm-agent-0.6.2.jar       login-reg-oldarch-0.0.1.jar       selfpractice.jar          Zuul-EdgeServer-0.0.1-SNAPSHOT.jar
+emr-0.0.1.jar                     logs                              server.js                 Zuul-EdgeServer-Test-0.0.1.jar
+[r
+
+
+
+#!/bin/sh
+SERVICE_NAME=appointment-new
+PATH_TO_JAR=/opt/app/appointment-new.jar
+PID_PATH_NAME=/tmp/appoint-new
+
+. /etc/init.d/env
+
+case $1 in
+    start)
+        echo "Starting $SERVICE_NAME ..."
+        if [ ! -f $PID_PATH_NAME ]; then
+            nohup java -Xmx1500M  -javaagent:/opt/app/elastic-apm-agent-0.6.2.jar -Delastic.apm.server_url=http://$APM_SERVER_IP:$APM_SERVER_PORT -Delastic.apm.service_name=gateway-dev -Delastic.apm.application_packages=com.drucare -jar $PATH_TO_JAR /tmp 2>> /dev/null >> /dev/null &
+                        echo $! > $PID_PATH_NAME
+            echo "$SERVICE_NAME started ..."
+        else
+            echo "$SERVICE_NAME is already running ..."
+        fi
+    ;;
+    stop)
+        if [ -f $PID_PATH_NAME ]; then
+            PID=$(cat $PID_PATH_NAME);
+            echo "$SERVICE_NAME stoping ..."
+            kill $PID;
+            echo "$SERVICE_NAME stopped ..."
+            rm $PID_PATH_NAME
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+    restart)
+        if [ -f $PID_PATH_NAME ]; then
+            PID=$(cat $PID_PATH_NAME);
+            echo "$SERVICE_NAME stopping ...";
+            kill $PID;
+            echo "$SERVICE_NAME stopped ...";
+            rm $PID_PATH_NAME
+            echo "$SERVICE_NAME starting ..."
+            nohup java -jar $PATH_TO_JAR /tmp 2>> /dev/null >> /dev/null &
+                        echo $! > $PID_PATH_NAME
+            echo "$SERVICE_NAME started ..."
+        else
+            echo "$SERVICE_NAME is not running ..."
+"appointment-new"
